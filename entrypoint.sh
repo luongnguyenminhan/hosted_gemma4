@@ -5,7 +5,7 @@ MODEL_REPO="${MODEL_REPO:-TrevorJS/gemma-4-E4B-it-uncensored}"
 BASE_REPO="${BASE_REPO:-google/gemma-4-E4B}"
 MERGED_DIR="${MERGED_DIR:-/models/merged}"
 
-export HF_HUB_ENABLE_HF_TRANSFER="${HF_HUB_ENABLE_HF_TRANSFER:-1}"
+export HF_XET_HIGH_PERFORMANCE="${HF_XET_HIGH_PERFORMANCE:-1}"
 export PYTHONUNBUFFERED=1
 
 mkdir -p "${MERGED_DIR}"

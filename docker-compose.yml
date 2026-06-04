@@ -10,7 +10,7 @@ services:
       - ./models:/models
     environment:
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
-      - HF_HUB_ENABLE_HF_TRANSFER=1
+      - HF_XET_HIGH_PERFORMANCE=1
       - MODEL_REPO=TrevorJS/gemma-4-E4B-it-uncensored
       - BASE_REPO=google/gemma-4-E4B
       - MERGED_DIR=/models/merged
