@@ -1,11 +1,9 @@
-FROM lmsysorg/sglang:latest
+FROM vllm/vllm-openai:latest
 
 ENV HF_HOME=/models
 ENV HF_XET_HIGH_PERFORMANCE=1
-
-COPY entrypoint.sh /entrypoint.sh
-RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
+ENV VLLM_WORKER_MULTIPROC_METHOD=spawn
 
 EXPOSE 8000
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["python3", "-m", "vllm.entrypoints.openai.api_server"]

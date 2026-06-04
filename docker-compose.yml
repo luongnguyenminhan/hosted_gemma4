@@ -1,8 +1,8 @@
 services:
-  sglang:
+  vllm:
     build: .
     image: hosted-gemma4:latest
-    container_name: sglang-gemma4
+    container_name: vllm-gemma4
     restart: unless-stopped
     ports:
       - "8001:8000"
@@ -12,18 +12,25 @@ services:
       - HF_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
       - HF_XET_HIGH_PERFORMANCE=1
-      - GGUF_REPO=HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive
-      - GGUF_FILE=Gemma-4-E4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
-      - SERVED_MODEL_NAME=gemma-4-e4b-uncensored
     ipc: host
     shm_size: "8gb"
     tty: true
     stdin_open: true
     command:
-      - --context-length=4096
-      - --mem-fraction-static=0.85
-      - --max-running-requests=4
-      - --attention-backend=triton
+      - --model=google/gemma-4-E4B
+      - --served-model-name=gemma-4-e4b
+      - --host=0.0.0.0
+      - --port=8000
+      - --dtype=bfloat16
+      - --quantization=fp8
+      - --kv-cache-dtype=fp8
+      - --max-model-len=2048
+      - --max-num-seqs=2
+      - --max-num-batched-tokens=2048
+      - --gpu-memory-utilization=0.90
+      - --cpu-offload-gb=2
+      - --swap-space=0
+      - --enforce-eager
       - --trust-remote-code
     deploy:
       resources:
