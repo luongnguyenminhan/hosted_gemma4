@@ -35,12 +35,8 @@ services:
       - "4096"
       - --parallel
       - "2"
-      - --cache-type-k
-      - q8_0
-      - --cache-type-v
-      - q8_0
       - --flash-attn
-      - "on"
+      - "off"
       - --jinja
     deploy:
       resources:
