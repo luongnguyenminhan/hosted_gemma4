@@ -17,6 +17,8 @@ services:
       - SERVED_MODEL_NAME=gemma-4-e4b-uncensored
     ipc: host
     shm_size: "8gb"
+    tty: true
+    stdin_open: true
     command:
       - --context-length=4096
       - --mem-fraction-static=0.85
