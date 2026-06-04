@@ -18,6 +18,7 @@ services:
       - HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive
       - --hf-file
       - Gemma-4-E4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
+      - --no-mmproj
       - --alias
       - gemma-4-e4b-uncensored
       - --host
@@ -26,6 +27,10 @@ services:
       - "8000"
       - --n-gpu-layers
       - "99"
+      - -fit
+      - "off"
+      - --no-mmap
+      - --mlock
       - --ctx-size
       - "4096"
       - --parallel
