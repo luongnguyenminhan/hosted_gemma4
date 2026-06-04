@@ -1,7 +1,11 @@
-FROM ghcr.io/ggml-org/llama.cpp:server-cuda
+FROM lmsysorg/sglang:latest
 
-ENV LLAMA_ARG_HOST=0.0.0.0
-ENV LLAMA_ARG_PORT=8000
-ENV LLAMA_CACHE=/models
+ENV HF_HOME=/models
+ENV HF_HUB_ENABLE_HF_TRANSFER=1
+
+COPY entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 EXPOSE 8000
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,43 +1,28 @@
 services:
-  llama:
+  sglang:
     build: .
     image: hosted-gemma4:latest
-    container_name: llama-gemma4
+    container_name: sglang-gemma4
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - ./models:/models
     environment:
       - HF_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
-      - LLAMA_CACHE=/models
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+      - HF_HUB_ENABLE_HF_TRANSFER=1
+      - GGUF_REPO=HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive
+      - GGUF_FILE=Gemma-4-E4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
+      - SERVED_MODEL_NAME=gemma-4-e4b-uncensored
     ipc: host
     shm_size: "8gb"
     command:
-      - --hf-repo
-      - HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive
-      - --hf-file
-      - Gemma-4-E4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
-      - --no-mmproj
-      - --alias
-      - gemma-4-e4b-uncensored
-      - --host
-      - 0.0.0.0
-      - --port
-      - "8000"
-      - --n-gpu-layers
-      - "99"
-      - -fit
-      - "off"
-      - --no-mmap
-      - --mlock
-      - --ctx-size
-      - "4096"
-      - --parallel
-      - "2"
-      - --flash-attn
-      - "off"
-      - --jinja
+      - --context-length=4096
+      - --mem-fraction-static=0.85
+      - --max-running-requests=4
+      - --attention-backend=triton
+      - --trust-remote-code
     deploy:
       resources:
         reservations:
@@ -50,4 +35,4 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 300s
+      start_period: 600s
