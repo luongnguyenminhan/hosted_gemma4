@@ -17,17 +17,16 @@ services:
     tty: true
     stdin_open: true
     command:
-      - --model=google/gemma-4-E4B-it
+      - --model=prithivMLmods/gemma-4-E4B-it-FP8
       - --served-model-name=gemma-4-e4b-it
       - --host=0.0.0.0
       - --port=8000
-      - --dtype=bfloat16
-      - --quantization=fp8
+      - --dtype=auto
       - --kv-cache-dtype=fp8
       - --max-model-len=2048
       - --max-num-seqs=2
       - --max-num-batched-tokens=2048
-      - --gpu-memory-utilization=0.80
+      - --gpu-memory-utilization=0.75
       - --cpu-offload-gb=2
       - --enforce-eager
       - --trust-remote-code
