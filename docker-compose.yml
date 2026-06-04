@@ -17,8 +17,8 @@ services:
     tty: true
     stdin_open: true
     command:
-      - --model=google/gemma-4-E4B
-      - --served-model-name=gemma-4-e4b
+      - --model=google/gemma-4-E4B-it
+      - --served-model-name=gemma-4-e4b-it
       - --host=0.0.0.0
       - --port=8000
       - --dtype=bfloat16
