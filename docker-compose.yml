@@ -15,8 +15,8 @@ services:
     shm_size: "8gb"
     command:
       - --model=TrevorJS/gemma-4-E4B-it-uncensored
-      - --tokenizer=google/gemma-3n-E4B-it
-      - --hf-config-path=google/gemma-3n-E4B-it
+      - --tokenizer=google/gemma-4-E4B
+      - --hf-config-path=google/gemma-4-E4B
       - --served-model-name=gemma-4-e4b-uncensored
       - --host=0.0.0.0
       - --port=8000
