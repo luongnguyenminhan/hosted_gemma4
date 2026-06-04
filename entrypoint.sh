@@ -12,7 +12,7 @@ GGUF_PATH="${DOWNLOAD_DIR}/${GGUF_FILE}"
 
 if [ ! -f "${GGUF_PATH}" ]; then
   echo "[entrypoint] downloading ${GGUF_REPO}/${GGUF_FILE} -> ${DOWNLOAD_DIR}"
-  huggingface-cli download "${GGUF_REPO}" "${GGUF_FILE}" \
+  hf download "${GGUF_REPO}" "${GGUF_FILE}" \
     --local-dir "${DOWNLOAD_DIR}"
 else
   echo "[entrypoint] reusing cached ${GGUF_PATH}"

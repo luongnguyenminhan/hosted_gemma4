@@ -11,7 +11,7 @@ services:
     environment:
       - HF_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
-      - HF_HUB_ENABLE_HF_TRANSFER=1
+      - HF_XET_HIGH_PERFORMANCE=1
       - GGUF_REPO=HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive
       - GGUF_FILE=Gemma-4-E4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
       - SERVED_MODEL_NAME=gemma-4-e4b-uncensored
