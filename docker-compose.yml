@@ -24,7 +24,7 @@ services:
       - --quantization=fp8
       - --kv-cache-dtype=fp8
       - --max-model-len=8192
-      - --gpu-memory-utilization=0.90
+      - --gpu-memory-utilization=0.80
       - --trust-remote-code
     deploy:
       resources:
