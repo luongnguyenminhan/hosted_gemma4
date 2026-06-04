@@ -35,6 +35,7 @@ services:
       - --cache-type-v
       - q8_0
       - --flash-attn
+      - "on"
       - --jinja
     deploy:
       resources:
